@@ -1,80 +1,81 @@
-🚀 DSP Gesture Recognition
-Accelerometer-Based Machine Learning Gesture Classifier
+🎯 DSP-Based Gesture Recognition Project
 
-By Fatih Çatalçam
+Accelerometer Signal Processing + Machine Learning Classification
 
-<p align="center"> <img src="pca_gesture_train.png" width="500px"> </p>
-🧠 Project Overview
+This project focuses on recognizing hand gestures using accelerometer signals and classifying them into three directional movements:
 
-This project performs gesture recognition using accelerometer data.
-Three different hand movements were recorded, processed and classified using Machine Learning models:
+👉 LEFT
+👉 RIGHT
+👉 UP
 
-Gesture	Symbol
-LEFT	⬅️
-RIGHT	➡️
-UP	⬆️
+The system was built entirely by Fatih Çatalçam as part of the DSP Course Term Project.
 
-The goal is real-time recognition of motion patterns for future embedded usage.
+📂 Project Structure
+Folder / File	Description
+src/	All Python source codes (signal processing, ML models, visualization scripts)
+data/	Recorded accelerometer CSV datasets for gestures
+confusion_KNN_k=3.png	KNN confusion matrix visualization
+confusion_SVM_RBF.png	SVM confusion matrix visualization
+confusion_RandomForest.png	Random Forest confusion matrix visualization
+pca_gesture_train.png	PCA projection of gesture clusters in feature space
+gesture_results.csv	Peak-feature based classification results
+README.md	Documentation for users & developers
+🔧 Used Technologies
+Component	Usage
+Python	Main development language
+Numpy, Pandas	Feature extraction from signal data
+Matplotlib, Seaborn	Visualization & PCA plots
+Scikit-Learn	ML models (KNN, SVM, Random Forest)
+🔬 Methodology
+1. Data Collection
 
-📂 Folder Structure
-DSP_Gesture_Project
-│── data/                # Raw CSV gesture recordings
-│── src/                 # All Python files
-│   ├── ml_classifier.py
-│   ├── ml_advanced.py
-│   ├── visualize.py
-│   └── main.py
-│
-│── confusion_KNN_k=3.png
-│── confusion_SVM_RBF.png
-│── confusion_RandomForest.png
-│── pca_gesture_train.png
-│
-└── README.md
+Gesture movements were recorded through an accelerometer and exported as .csv files.
 
-🔬 Methodology Pipeline
-Step	Description
-1. Data Acquisition	Movements collected via accelerometer sensor
-2. Feature Extraction	Peaks, mins, signal energy, std, mean etc.
-3. Classification	ML models trained & tested
-4. Evaluation	Performance metrics & confusion matrices
-📈 Model Performance
+2. Feature Extraction
 
-| Model | Accuracy | Note |
-|---|---|
-| SVM (RBF) | 🟩 High (~90%) | Best Consistency |
-| Random Forest | 🟨 Medium | Feature dependent |
-| KNN (k=3) | 🟥 Lower (~60-70%) | Sensitive to dataset size |
+From each gesture file, the following characteristics were extracted:
 
-🔥 Result Visualizations
-<p align="center"> <img src="confusion_SVM_RBF.png" width="400"> <img src="confusion_RandomForest.png" width="400"><br> <img src="confusion_KNN_k=3.png" width="400"> </p>
+📌 X Peak, X Minimum
+📌 Z Peak, Z Minimum
+📌 Mean, Standard Deviation, Signal Energy, etc.
 
-📍 PCA Gesture Distribution
+3. Training & Testing
 
-<p align="center"> <img src="pca_gesture_train.png" width="500"> </p>
-⚙️ Run The Project
+ML classification was performed using:
+
+Model	Accuracy
+KNN (k=3)	~66%
+Random Forest	~72%
+SVM (RBF Kernel)	~90% Best Performance 🏆
+
+Models were trained using 70-30 split based on available dataset count.
+
+📈 Results
+Model	Performance
+🔵 SVM → Best and most stable	
+🟠 RandomForest → Medium performance	
+🟢 KNN → Lower but functional	
+
+Visualization examples:
+
+Figure	Output
+Confusion Matrix – SVM	confusion_SVM_RBF.png
+PCA Gesture Distribution	pca_gesture_train.png
+🚀 How to Run
 cd src
 python ml_classifier.py
 
 
-For visualization:
+Or for visualization:
 
 python visualize.py
 
 
-Dataset must be inside /data.
-
-📝 Notes & Experience
-
-✔ Data collection required multiple attempts due to hand-movement noise
-✔ Keeping gestures stable was challenging
-✔ Preprocessing strongly affects classification quality
-✔ SVM produced the most reliable results
+Ensure that your /data folder is located in the same directory.
 
 👤 Author
 
 Fatih Çatalçam
-Computer Engineering — DSP Term Project
-📩 Contact: (Eklenecekse mail yazabilirsin)
+DSP Course — Computer Engineering
 
-If this repo helped you, leave a ⭐ — it motivates more work!
+If you find this work useful, drop a ⭐ star on GitHub :)
